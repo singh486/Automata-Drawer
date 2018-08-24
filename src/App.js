@@ -3,10 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  handleClick(){
-    alert("hello");
+
+  handleClick(e) {
+    var xPosition = e.clientX;
+    var yPosition = e.clientY;
+
+    //var canvas = document.getElementById("id");
+    var ctx = e.currentTarget.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(xPosition,yPosition, 40, 0, 2* Math.PI);
+    ctx.stroke();
+    console.log(xPosition, yPosition);
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -17,7 +26,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <canvas className="myCanvas" onClick = {this.handleClick} ></canvas>
+        <canvas id = "canvas" className="myCanvas" onClick = {this.handleClick} ></canvas>
       </div>
     );
   }
